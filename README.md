@@ -2,6 +2,22 @@
 
 一个基于前后端分离架构的企业人事管理系统，提供员工管理、部门管理、合同管理、考勤管理、加班出差、培训考核、薪资管理等完整的人力资源管理功能。
 
+## 📸 项目截图
+
+### 登录页
+![登录页](screenshots/login.png)
+
+### 管理员工作台
+![管理员工作台](screenshots/dashboard.png)
+
+### 员工管理
+![员工管理](screenshots/employee.png)
+
+### 考勤管理
+![考勤管理](screenshots/attendance.png)
+
+---
+
 ## ✨ 项目亮点
 
 - **完整的 RBAC 权限体系**：基于 Spring Security + JWT 实现三级权限（管理员 / 人事专员 / 普通员工）
