@@ -2,6 +2,29 @@
 
 一个基于前后端分离架构的企业人事管理系统，提供员工管理、部门管理、合同管理、考勤管理、加班出差、培训考核、薪资管理等完整的人力资源管理功能。
 
+## ✨ 项目亮点
+
+- **完整的 RBAC 权限体系**：基于 Spring Security + JWT 实现三级权限（管理员 / 人事专员 / 普通员工）
+- **审批工作流**：加班、出差、离职等业务的申请-审批流程，包含状态流转
+- **18 张数据库表设计**：涵盖人力资源管理核心业务域，关系完整
+- **23 个 Controller + 21 个前端页面**：完整的 CRUD 及复杂业务逻辑实现
+- **定时任务调度**：每日凌晨自动处理未签退考勤数据
+- **系统运维能力**：操作日志记录、数据备份与恢复
+
+## 🛠 技术难点与解决方案
+
+### 1. JWT 无状态认证与 Spring Security 整合
+- **问题**：前后端分离架构下，传统 Session 认证不适用
+- **方案**：自定义 `JwtAuthenticationFilter`，实现 Token 解析、用户信息注入与权限校验
+
+### 2. 基于角色的动态权限控制
+- **问题**：不同角色需要看到不同的菜单和接口权限
+- **方案**：前端基于角色的路由守卫 + 后端接口级权限校验，双重保障
+
+### 3. 考勤自动处理定时任务
+- **问题**：每日需要批量处理只签到未签退的考勤记录
+- **方案**：使用 `@Scheduled` 定时任务，每日凌晨 00:00 自动执行
+
 ## 技术栈
 
 ### 前端
@@ -114,14 +137,9 @@ CREATE DATABASE IF NOT EXISTS hr_management DEFAULT CHARACTER SET utf8mb4 COLLAT
 
 ### 后端启动
 
-1. 修改数据库配置 `backend/src/main/resources/application.yml`：
-```yaml
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/hr_management?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: your_password
-```
+1. 配置数据库连接：
+   - 复制 `backend/src/main/resources/application.yml.example` 为 `application.yml`
+   - 修改其中的数据库用户名和密码
 
 2. 启动后端服务：
 ```bash

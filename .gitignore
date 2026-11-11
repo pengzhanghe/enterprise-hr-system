@@ -36,6 +36,9 @@ logs/
 .env.local
 .env.*.local
 
+# Application config (contains sensitive info)
+backend/src/main/resources/application.yml
+
 # OS files
 .DS_Store
 Thumbs.db
